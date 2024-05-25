@@ -27,7 +27,7 @@ public class BinaryHeap <Key extends Comparable <Key>> {
     }
 
     private boolean less(int valueOne, int valueTwo) {
-        return binaryHeap[valueOne].compareTo(binaryHeap[valueTwo]) > 0;
+        return binaryHeap[valueOne].compareTo(binaryHeap[valueTwo]) < 0;
     }
 
     private void sink(int index) {
