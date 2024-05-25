@@ -7,8 +7,8 @@ public class BinaryHeap <Key extends Comparable <Key>> {
         binaryHeap = (Key[]) new Comparable[capacity + 1];
     }
 
-    public void insert(Key x) {
-        binaryHeap[++size] = x;
+    public void insert(Key key) {
+        binaryHeap[++size] = key;
         swim(size);
     }
 
@@ -21,31 +21,31 @@ public class BinaryHeap <Key extends Comparable <Key>> {
     }
 
     private void exchange(int i, int j) {
-        Key t = binaryHeap[i];
+        Key key = binaryHeap[i];
         binaryHeap[i] = binaryHeap[j];
-        binaryHeap[j] = t;
+        binaryHeap[j] = key;
     }
 
-    private boolean less(int i, int j) {
-        return binaryHeap[i].compareTo(binaryHeap[j]) > 0;
+    private boolean less(int valueOne, int valueTwo) {
+        return binaryHeap[valueOne].compareTo(binaryHeap[valueTwo]) > 0;
     }
 
-    private void sink(int k) {
-        while(k * 2 <= size) {
-            int j = k * 2;
+    private void sink(int index) {
+        while(index * 2 <= size) {
+            int j = index * 2;
             if(j < size && less(j, j + 1))
                 j++;
-            if(!less(k, j))
+            if(!less(index, j))
                 break;
-            exchange(k, j);
-            k = j;
+            exchange(index, j);
+            index = j;
         }
     }
 
-    private void swim(int k) {
-        while(k > 1 && less(k / 2, k)) {
-            exchange(k, k / 2);
-            k = k / 2;
+    private void swim(int index) {
+        while(index > 1 && less(index / 2, index)) {
+            exchange(index, index / 2);
+            index = index / 2;
         }
     }
 }
